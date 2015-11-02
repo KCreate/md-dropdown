@@ -1,6 +1,7 @@
 ## &lt;md-dropdown&gt;
 A Polymer element to hide sections of content
 
+[_DEMO_](http://leonardschuetz.ch/storage/stuff/polymer/md-dropdown/)
 ![md-dropdown preview](preview.jpg)
 
 __Usage:__
