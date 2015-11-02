@@ -13,6 +13,7 @@
 		<style media="screen">
 			* {
 				font-family: "Roboto", sans-serif;
+				box-sizing: border-box;
 			}
 			body {
 				background-color: #2979FF;
@@ -24,12 +25,28 @@
 			b {
 				color: #2979FF;
 			}
+			.card-action {
+				margin: 5px 0;
+			}
+			img {
+				width: 100%;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="wrapper">
-			<md-dropdown heading="md-dropdown">
+			<md-dropdown heading="Default">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione enim odio iusto dolore deserunt earum minus alias, cum corporis, inventore dolorum excepturi provident, mollitia recusandae accusamus consequatur quo, optio! Quaerat pariatur harum nobis consequuntur nisi corporis similique dolores veritatis. Neque, aliquam totam. Dolore nam placeat harum, qui amet nihil eveniet ea, aut autem asperiores obcaecati quos beatae eum officiis, et optio veritatis ipsum voluptatibus blanditiis. Explicabo molestias nobis quo obcaecati, minima, sed deserunt perspiciatis praesentium tempora ab, vitae iste placeat, harum vel debitis ea. Nisi beatae architecto suscipit, doloremque quam dignissimos corrupti, a consequuntur dolorum possimus laborum consequatur perspiciatis. Voluptatum ad unde voluptates, vitae odio odit, illo autem praesentium voluptatem repudiandae vel nulla maxime quos, vero animi sunt alias nesciunt fuga quas ipsa. Corporis tempore doloremque ipsam similique! Ut, quis!
+			</md-dropdown>
+			<md-dropdown heading="Dropdown with buttons">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos id deserunt modi excepturi ipsum nostrum, ab nulla ducimus, blanditiis cum.
+				<div class="card-action">
+					<paper-button>Share</paper-button>
+					<paper-button>Delete</paper-button>
+				</div>
+			</md-dropdown>
+			<md-dropdown heading="Dropdown with an image">
+				<img src="george-bool" alt="George Bool"/>
 			</md-dropdown>
 		</div>
 	</body>
