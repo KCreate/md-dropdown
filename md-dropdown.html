@@ -1,0 +1,118 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<dom-module id="md-dropdown">
+    <template>
+        <style media="screen">
+        paper-material {
+            padding: 15px;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 2px;
+            margin: 8px 0;
+        }
+        .card-headline {
+            overflow: auto;
+            height: 50px;
+        }
+        h2 {
+            margin: 0;
+            float: left;
+            line-height: 50px;
+        }
+        paper-button {
+            float: right;
+            min-width: 6px !important;
+            color: #2979FF;
+            height: 100%;
+        }
+        paper-button iron-icon {
+            height: 100%;
+        }
+        .card-content-wrapper {
+            opacity: 0;
+            overflow: hidden;
+
+            /* makes the element closed by default */
+            /* remove this if the element should be open by default */
+            max-height: 0px;
+
+            transition: all 250ms cubic-bezier(.55,0,.1,1);
+        }
+        .card-content-wrapper.expanded  {
+            opacity: 1;
+        }
+        </style>
+        <paper-material elevation="1">
+            <div class="card-headline">
+                <h2>{{heading}}</h2>
+                <paper-button toggles active="{{expanded}}">
+                    <iron-icon icon="icons:expand-more"></iron-icon>
+                </paper-button>
+            </div>
+            <div class="card-content-wrapper">
+                <div class="card-content">
+                    <content></content>
+                </div>
+            </div>
+        </paper-material>
+    </template>
+    <script>
+    Polymer({
+        is: "md-dropdown",
+        properties: {
+            heading: {
+                type: String,
+                value: ""
+            },
+            expanded: {
+                type: Boolean,
+                value: false,
+                observer: 'expandedHandler'
+            },
+            nomargin: {
+                type: Boolean,
+                value: undefined
+            },
+            open: {
+                type: Boolean,
+                value: undefined
+            }
+        },
+        expandedHandler: function(n, o){
+            // toggle expanded class
+            var content = this.querySelector(".card-content-wrapper");
+            if (n&&o!==undefined) {
+                content.classList.toggle("expanded");
+                var cardcontent = this.querySelector(".card-content");
+                var height = document // extract the computed property
+                    .defaultView
+                    .getComputedStyle(cardcontent, null)
+                    .getPropertyValue("height");
+                console.log(height);
+
+                // height==auto bug catcher
+                if (height=="auto") {
+                    height="9999px";
+                }
+
+                // set the property
+                this.querySelector(".card-content-wrapper").style.maxHeight = height;
+            } else if (o) {
+                // remove the property
+                content.classList.toggle("expanded");
+                this.querySelector(".card-content-wrapper").style.maxHeight = "0px";
+            }
+        },
+        ready: function(){
+            // start the element expanded if the open property is set
+            if (this.open) {
+                this.expanded = true;
+            }
+
+            // remove the margin if the nomargin property is set
+            if (this.nomargin) {
+                this.querySelector("paper-material").style.margin = "0";
+            }
+        }
+    });
+    </script>
+</dom-module>
